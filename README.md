@@ -1,7 +1,4 @@
-# PRTReid Training (Standalone)
-
-Tutorial ini dibuat dalam format command-step seperti contoh kamu.
-Semua runtime tetap standalone: tidak import `sn-gamestate`/`tracklab` saat train/eval.
+# PRTReid Training 
 
 ## 0) Project Folder
 
