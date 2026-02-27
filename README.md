@@ -13,19 +13,12 @@ cd "PRTReid Training"
 ### Wajib (engine PRTReid)
 
 ```powershell
-cd "C:\Programming\PRTReid Training"
-mkdir third_party
-cd third_party
-git clone https://github.com/VlSomers/prtreid.git
-cd prtreid
-git checkout 30617a7
-cd "C:\Programming\PRTReid Training"
+git clone https://github.com/rifqilukmansyah1/prtreid-training
 ```
 
 ### Opsional (hanya referensi, tidak dipakai runtime)
 
 ```powershell
-cd C:\Programming
 mkdir _refs
 cd _refs
 git clone https://github.com/SoccerNet/sn-gamestate.git
@@ -236,9 +229,9 @@ Parameter utama:
 ## 11) Default Model Paths
 
 - HRNet backbone weights:
-  - `C:\Programming\PRTReid Training\model\hrnetv2_w32_imagenet_pretrained.pth`
+  - `https://drive.google.com/file/d/1MRW4w50uSEW0v6XittpVQijp4aKP5_bu/view?usp=sharing`
 - PRTReid pretrained Soccernet:
-  - `C:\Programming\PRTReid Training\model\prtreid-soccernet-baseline.pth.tar`
+  - `https://drive.google.com/file/d/10Xc8aTvzauMJ4XU_XMs72hF2NxSOHPzk/view?usp=sharing`
 
 ## 12) Dataset Labeling Guide (CVAT)
 
