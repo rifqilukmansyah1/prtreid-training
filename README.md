@@ -13,6 +13,11 @@ cd "PRTReid Training"
 ### Wajib (engine PRTReid)
 
 ```powershell
+mkdir third_party
+cd third_party
+git clone https://github.com/VlSomers/prtreid.git
+cd prtreid
+git checkout 30617a7
 git clone https://github.com/rifqilukmansyah1/prtreid-training
 ```
 
