@@ -1,0 +1,38 @@
+﻿# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+.env/
+
+# Logs and outputs
+logs/
+outputs/
+
+# Data artifacts
+data/raw/
+data/processed/
+data/reid/
+data/cvat/
+*.zip
+*.7z
+
+# Model and checkpoints
+*.pth
+*.pth.tar
+*.pt
+*.onnx
+
+# Vendored/external repos
+third_party/prtreid/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

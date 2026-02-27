@@ -1,0 +1,96 @@
+project:
+  name: "PRTReidStandalone"
+  experiment_name: ""
+  notes: ""
+  tags: []
+  logger:
+    use_tensorboard: false
+    use_wandb: false
+
+data:
+  root: "./data/processed"
+  type: "image"
+  sources: ["custom_reid"]
+  targets: ["custom_reid"]
+  height: 256
+  width: 128
+  combineall: false
+  transforms: ["rc", "re"]
+  save_dir: "./outputs/runs"
+  workers: 4
+
+sampler:
+  train_sampler: "RandomIdentitySampler"
+  train_sampler_t: "RandomIdentitySampler"
+  num_instances: 4
+
+model:
+  name: "bpbreid"
+  pretrained: true
+  load_config: false
+  load_weights: "./model/prtreid-soccernet-baseline.pth.tar"
+  save_model_flag: true
+  bpbreid:
+    pooling: "gwap"
+    normalization: "identity"
+    mask_filtering_training: false
+    mask_filtering_testing: false
+    training_binary_visibility_score: true
+    testing_binary_visibility_score: true
+    last_stride: 1
+    learnable_attention_enabled: false
+    dim_reduce: "after_pooling"
+    dim_reduce_output: 256
+    backbone: "hrnet32"
+    test_embeddings: ["globl"]
+    test_use_target_segmentation: "none"
+    shared_parts_id_classifier: false
+    hrnet_pretrained_path: "./model"
+    masks:
+      type: "disk"
+      dir: "pose_on_img_crops"
+      preprocess: "id"
+
+loss:
+  name: "part_based"
+  part_based:
+    name: "part_averaged_triplet_loss"
+    ppl: "cl"
+    weights:
+      globl:
+        id: 1.0
+        tr: 1.0
+      foreg:
+        id: 0.0
+        tr: 0.0
+      conct:
+        id: 0.0
+        tr: 0.0
+      parts:
+        id: 0.0
+        tr: 0.0
+      pixls:
+        ce: 0.0
+
+train:
+  batch_size: 32
+  max_epoch: 20
+
+test:
+  evaluate: false
+  detailed_ranking: false
+  start_eval: 40
+  batch_size: 64
+  batch_size_pairwise_dist_matrix: 5000
+  normalize_feature: true
+  dist_metric: "euclidean"
+  visrank: false
+  visrank_per_body_part: false
+  vis_embedding_projection: false
+  vis_feature_maps: false
+  visrank_topk: 10
+  visrank_count: 4
+  visrank_q_idx_list: []
+  part_based:
+    dist_combine_strat: "mean"
+

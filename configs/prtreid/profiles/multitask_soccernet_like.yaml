@@ -1,0 +1,39 @@
+﻿sampler:
+  train_sampler: "PrtreidSampler"
+  train_sampler_t: "PrtreidSampler"
+
+model:
+  bpbreid:
+    backbone: "hrnet32"
+    test_embeddings: ["globl"]
+
+loss:
+  name: "part_based"
+  part_based:
+    name: "part_averaged_triplet_loss"
+    ppl: "cl"
+    weights:
+      globl:
+        id: 1.0
+        tr: 1.0
+      foreg:
+        id: 0.0
+        tr: 0.0
+      conct:
+        id: 0.0
+        tr: 0.0
+      parts:
+        id: 0.0
+        tr: 0.0
+      pixls:
+        ce: 0.0
+
+train:
+  batch_size: 32
+  max_epoch: 20
+
+test:
+  evaluate: true
+  batch_size: 64
+  normalize_feature: true
+  dist_metric: "euclidean"
